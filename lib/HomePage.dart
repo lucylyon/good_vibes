@@ -14,28 +14,45 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.deepPurple[100],
         appBar: AppBar(
           title: const Text('Home Page'),
+          backgroundColor: Colors.deepPurple,
         ),
-        body: Center(child: Column(
+        body: new Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text("Press one of these buttons for good vibes", style: TextStyle(fontSize: 30)),
+            Text("Press one of these buttons for good vibes",
+                style: TextStyle(fontSize: 30),
+                textAlign: TextAlign.center
+            ),
             RaisedButton(
+              padding: EdgeInsets.all(15),
+              color: Colors.deepPurple,
               onPressed: () {
                 Navigator.of(context).pushNamed("/picture");
               },
-              child: Text("Get a picture", style: optionStyle,)
+              child: Text("Get a picture",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 28,
+                ),
+              )
             ),
             RaisedButton(
+              padding: EdgeInsets.all(15),
+              color: Colors.deepPurple,
               onPressed: () {
-                Navigator.of(context).pushNamed("/quote");
-              },
-              child: Text("Get a quote", style: optionStyle,),
-            )
-          ],
+              Navigator.of(context).pushNamed("/quote");
+            },
+             child: Text("Get a quote",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 28
+        )),
         )
+        ],
         )
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:good_vibes/BottomNavPage.dart';
-import 'package:good_vibes/PicturePage.dart';
-import 'package:good_vibes/QuotePage.dart';
+import 'BottomNavPage.dart';
+import 'PicturePage.dart';
+import 'QuotePage.dart';
 
 void main() => runApp(MyApp());
 

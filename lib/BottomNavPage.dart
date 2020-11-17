@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:good_vibes/FriendPage.dart';
-import 'package:good_vibes/HomePage.dart';
-import 'package:good_vibes/ResourcesPage.dart';
+import 'FriendPage.dart';
+import 'HomePage.dart';
+import 'ResourcesPage.dart';
 
 class BottomNavPage extends StatefulWidget{
   @override
@@ -40,10 +40,11 @@ class BottomNavPageState extends State<BottomNavPage> {
   BottomNavigationBarItem navBarChoice(String text, IconData icon) {
     return BottomNavigationBarItem(
       title: Text(text),
-      icon: Icon(icon),
-      backgroundColor: Colors.deepPurple
+      icon: Icon(icon, color: Colors.white),
+      backgroundColor: Colors.black87
     );
   }
 }
+
 
 

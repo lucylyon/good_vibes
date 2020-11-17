@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:good_vibes/Lists.dart';
+import 'Lists.dart';
 
 final int port = 4853;
 

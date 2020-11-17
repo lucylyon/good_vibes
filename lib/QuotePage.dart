@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:good_vibes/Lists.dart';
+import 'Lists.dart';
 
 class QuotePage extends StatefulWidget{
 
@@ -9,6 +9,8 @@ class QuotePage extends StatefulWidget{
 
 class QuotePageState extends State<QuotePage> {
 
+  String quote;
+
   String _pickQuote() {
     quotes.shuffle();
     return quotes[0];
@@ -16,7 +18,7 @@ class QuotePageState extends State<QuotePage> {
 
   @override
   Widget build(BuildContext context) {
-    String quote = _pickQuote();
+    quote = _pickQuote();
     return Scaffold(
       backgroundColor: Colors.pink[100],
       appBar: AppBar(
@@ -27,22 +29,30 @@ class QuotePageState extends State<QuotePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget> [
-          Text( quote ,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 48.0,
-            fontWeight: FontWeight.bold,
-            //fontFamily: Font
-          )
+          Padding(
+            //bottomPadding:
+            padding: EdgeInsets.fromLTRB(0,0,0,50),
+            child: Text( quote ,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 48.0,
+              fontWeight: FontWeight.bold,
+              //fontFamily: Font
+            )
         ),
-       // Text('button here')
+          ),
       RaisedButton(
+        padding: EdgeInsets.all(10),
+        color: Colors.pink,
           onPressed: () {
-            quote = _pickQuote();
+            setState(() => quote = _pickQuote());
           },
-          child: Text("this doesnt work"), //goal is to change to new quote
-      )
+          child: Text("Get another quote",
+              style: TextStyle(
+              color: Colors.white,
+              fontSize: 18),
+      ))
       ]
       ),
       )
