@@ -47,7 +47,8 @@ class FriendPageState extends State<FriendPage> {
                   padding: EdgeInsets.all(15),
                   color: appBarColor,
                   onPressed: () {
-                    widget.network.sendQuote(_messageController.text, _currentFriend);
+                      widget.network.sendQuote(
+                          _messageController.text, _currentFriend);
                   },
                   child: Text("Send Quote",
                     style: TextStyle(
@@ -63,8 +64,11 @@ class FriendPageState extends State<FriendPage> {
                   padding: EdgeInsets.all(15),
                   color: appBarColor,
                   onPressed: () {
-                    Friend newFriend = Friend(_friendIPController.text, _friendNameController.text);
-                    friendList.add(newFriend);
+                    setState(() {
+                      Friend newFriend = Friend(
+                          _friendIPController.text, _friendNameController.text);
+                      friendList.add(newFriend);
+                    });
                   },
                   child: Text("Add new friend",
                     style: TextStyle(
