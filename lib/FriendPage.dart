@@ -13,14 +13,15 @@ class FriendPage extends StatefulWidget{
 }
 
 class FriendPageState extends State<FriendPage> {
-  Friend _currentFriend;
-  TextEditingController _controller = TextEditingController();
+  Friend _currentFriend = friendList[0];
+  TextEditingController _messageController = TextEditingController();
   Color appBarColor = Colors.deepOrangeAccent;
+  TextEditingController _friendNameController = TextEditingController();
+  TextEditingController _friendIPController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     List<DropdownMenuItem> menuList = _generateFriendMenu();
-    _currentFriend = friendList[0];
     return Scaffold(
       backgroundColor: Colors.deepOrange[100],
         appBar: AppBar(
@@ -41,19 +42,50 @@ class FriendPageState extends State<FriendPage> {
                 },
                 items: menuList
               ),
-              TextField(
-                controller: _controller,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Send a quote to ${_currentFriend.name}"
-                ),
-                onSubmitted: (String message) {
-                  widget.network.sendQuote(message, _currentFriend);
-                },
-              )
+              textField("Type a quote for ${_currentFriend.name}", _messageController),
+              RaisedButton(
+                  padding: EdgeInsets.all(15),
+                  color: appBarColor,
+                  onPressed: () {
+                    widget.network.sendQuote(_messageController.text, _currentFriend);
+                  },
+                  child: Text("Send Quote",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                    ),
+                  )
+              ),
+              Text("You can also add a new friend"),
+              textField("Friend name", _friendNameController),
+              textField("Friend IP", _friendIPController),
+              RaisedButton(
+                  padding: EdgeInsets.all(15),
+                  color: appBarColor,
+                  onPressed: () {
+                    Friend newFriend = Friend(_friendIPController.text, _friendNameController.text);
+                    friendList.add(newFriend);
+                  },
+                  child: Text("Add new friend",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                    ),
+                  )
+              ),
             ],
           ),
         )
+    );
+  }
+
+  TextField textField(String label, TextEditingController controller) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: label
+      ),
     );
   }
 
