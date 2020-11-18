@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'FriendPage.dart';
 import 'HomePage.dart';
 import 'ResourcesPage.dart';
+import 'Networking.dart';
 
 class BottomNavPage extends StatefulWidget{
   @override
@@ -9,9 +10,21 @@ class BottomNavPage extends StatefulWidget{
 }
 
 class BottomNavPageState extends State<BottomNavPage> {
-
-  List<Widget> _children = [HomePage(), FriendPage(), ResourcesPage()];
+  List<Widget> _children;
   int _currentIndex = 0;
+  Networking _network;
+
+  @override
+  void initState() {
+    super.initState();
+    print('Setting up server');
+    setUpNetwork().then((value) => print("Server set up"));
+  }
+
+  Future<void> setUpNetwork() async {
+    _network = Networking();
+    await _network.setUpServer();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -19,9 +32,9 @@ class BottomNavPageState extends State<BottomNavPage> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
+    _children = [HomePage(), FriendPage(network: _network,), ResourcesPage()];
     return new Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

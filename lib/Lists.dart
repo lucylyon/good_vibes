@@ -17,5 +17,5 @@ List<String> quotes = [
 ];
 
 List<Friend> friendList = [
-  Friend("127.0.0.1", "Me")
+  Friend("127.0.0.1", "Self")
 ];

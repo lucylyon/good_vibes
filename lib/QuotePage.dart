@@ -13,7 +13,7 @@ class QuotePageState extends State<QuotePage> {
 
   String _pickQuote() {
     quotes.shuffle();
-    return quotes[0];
+    return quotes.last;
   }
 
   @override

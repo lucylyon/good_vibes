@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:good_vibes/Friends.dart';
 import 'Lists.dart';
 
 final int port = 4853;
@@ -12,6 +13,7 @@ class Networking{
 
   Networking() {
     _encoder = JsonCodec();
+    setUpServer();
   }
 
   Future<SocketOutcome> setUpServer() async {
@@ -34,6 +36,20 @@ class Networking{
     print("received data from $ip");
     String message = _encoder.decode(String.fromCharCodes(data));
     quotes.add(message);
+    print(quotes.last);
+  }
+
+  Future<SocketOutcome> sendQuote(String quote, Friend friend) async {
+    try {
+      print("Connecting to ${friend.name} at ${friend.ipAddress}");
+      Socket socket = await Socket.connect(friend.ipAddress, port);
+      print("Connected");
+      socket.write(_encoder.encode(quote));
+      socket.close();
+      return SocketOutcome();
+    } on SocketException catch (e) {
+      return SocketOutcome(errorMessage: e.message);
+    }
   }
 }
 
