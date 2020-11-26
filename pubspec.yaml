@@ -46,7 +46,39 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/cat.jpg
+    - assets/beef.jpg
+    - assets/chicken.png
+    - assets/cow.jpg
+    - assets/cowch.jpg
+    - assets/cute.jpg
+    - assets/dogs.jpg
+    - assets/duck.jpg
+    - assets/flat.jpg
+    - assets/frog.jpg
+    - assets/frog2.jpg
+    - assets/gecko.jpg
+    - assets/mail.jpg
+    - assets/pig.jpg
+    - assets/quote.jpg
+    - assets/rat2.jpg
+    - assets/rat3.jpg
+    - assets/spooky.jpg
+    - assets/spooky2.jpg
+    - assets/tot.jpg
+    - assets/worms.jpg
+    - assets/corg.jpg
+    - assets/love.jpg
+    - assets/pup.jpg
+    - assets/flower.jpg
+    - assets/sky.jpg
+    - assets/plant.jpg
+    - assets/shoe.jpg
+    - assets/friend.jpg
+
+
+        # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
