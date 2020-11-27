@@ -3,6 +3,7 @@ import 'FriendPage.dart';
 import 'HomePage.dart';
 import 'ResourcesPage.dart';
 import 'Networking.dart';
+import 'ReadAndWrite.dart';
 
 class BottomNavPage extends StatefulWidget{
   @override
@@ -13,12 +14,14 @@ class BottomNavPageState extends State<BottomNavPage> {
   List<Widget> _children;
   int _currentIndex = 0;
   Networking _network;
+  ReadAndWrite _readAndWrite = ReadAndWrite();
 
   @override
   void initState() {
     super.initState();
     print('Setting up server');
     setUpNetwork().then((value) => print("Server set up"));
+    _readAndWrite.readInQuotes().then((value) => print("Quotes read in"));
   }
 
   Future<void> setUpNetwork() async {

@@ -4,12 +4,14 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:good_vibes/Friends.dart';
+import 'package:good_vibes/ReadAndWrite.dart';
 import 'Lists.dart';
 
 final int port = 4853;
 
 class Networking{
   JsonCodec _encoder;
+  ReadAndWrite _readAndWrite;
 
   Networking() {
     _encoder = JsonCodec();
@@ -37,6 +39,10 @@ class Networking{
     String message = _encoder.decode(String.fromCharCodes(data));
     quotes.add(message);
     print(quotes.last);
+  }
+
+  void saveQuote(String message) {
+    _readAndWrite.writeQuoteToFile(message);
   }
 
   Future<SocketOutcome> sendQuote(String quote, Friend friend) async {

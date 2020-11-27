@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'BottomNavPage.dart';
 import 'PicturePage.dart';
 import 'QuotePage.dart';
-import 'Networking.dart';
 
 void main() => runApp(MyApp());
 
