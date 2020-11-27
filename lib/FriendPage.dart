@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:good_vibes/Friends.dart';
 import 'Lists.dart';
 import 'Networking.dart';
+import 'package:good_vibes/ReadAndWrite.dart';
 
 class FriendPage extends StatefulWidget{
   FriendPage({Key key, this.network}) : super(key: key);
@@ -13,6 +14,7 @@ class FriendPage extends StatefulWidget{
 }
 
 class FriendPageState extends State<FriendPage> {
+  ReadAndWrite _readAndWrite = ReadAndWrite();
   Friend _currentFriend = friendList[0];
   TextEditingController _messageController = TextEditingController();
   Color appBarColor = Colors.deepOrangeAccent;
@@ -67,7 +69,7 @@ class FriendPageState extends State<FriendPage> {
                     setState(() {
                       Friend newFriend = Friend(
                           _friendIPController.text, _friendNameController.text);
-                      friendList.add(newFriend);
+                      _addFriend(newFriend);
                     });
                   },
                   child: Text("Add new friend",
@@ -104,5 +106,10 @@ class FriendPageState extends State<FriendPage> {
       );
     }
     return itemList;
+  }
+
+  void _addFriend(Friend newFriend) {
+    friendList.add(newFriend);
+    _readAndWrite.writeFriendToFile(newFriend);
   }
 }

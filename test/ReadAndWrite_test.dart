@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:good_vibes/ReadAndWrite.dart';
 import 'package:good_vibes/Lists.dart';
+import 'package:good_vibes/Friends.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -44,5 +45,14 @@ void main() {
     for (String quote in testQuotes) {
       expect(quotes.contains(quote), true);
     }
+  });
+  test('New friend should be added to file', () async {
+    ReadAndWrite readAndWrite = ReadAndWrite();
+    Friend testFriend = Friend('0.0.0.0', 'test');
+    await readAndWrite.writeFriendToFile(testFriend);
+    await readAndWrite.readInFriends();
+    print(friendList.last.name);
+    expect(friendList.last.name, testFriend.name);
+    expect(friendList.last.ipAddress, testFriend.ipAddress);
   });
 }

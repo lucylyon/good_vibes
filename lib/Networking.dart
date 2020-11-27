@@ -15,6 +15,7 @@ class Networking{
 
   Networking() {
     _encoder = JsonCodec();
+    _readAndWrite = ReadAndWrite();
     setUpServer();
   }
 
@@ -37,11 +38,12 @@ class Networking{
   void _handleData(String ip, Uint8List data) {
     print("received data from $ip");
     String message = _encoder.decode(String.fromCharCodes(data));
-    quotes.add(message);
+    _saveQuote(message);
     print(quotes.last);
   }
 
-  void saveQuote(String message) {
+  void _saveQuote(String message) {
+    quotes.add(message);
     _readAndWrite.writeQuoteToFile(message);
   }
 
