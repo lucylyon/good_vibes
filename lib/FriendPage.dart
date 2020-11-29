@@ -60,8 +60,17 @@ class FriendPageState extends State<FriendPage> {
                   )
               ),
               Text("You can also add a new friend"),
+              //
               textField("Friend name", _friendNameController),
-              textField("Friend IP", _friendIPController),
+              // textField("Friend IP", _friendIPController),
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'IP address',
+                ),
+                keyboardType: TextInputType.number,
+                controller: _friendIPController,
+              ),
+              //
               RaisedButton(
                   padding: EdgeInsets.all(15),
                   color: appBarColor,
